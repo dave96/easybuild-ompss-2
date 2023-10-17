@@ -1,0 +1,24 @@
+# EasyConfig for OmpSs-2/git
+easyblock = 'CMakeNinja'
+name = 'ovni'
+version = 'git'
+
+homepage = 'https://ovni.readthedocs.io'
+description = 'OVNI: Obtuse but Versatile Nanoscale Instrumentation'
+
+toolchain = {'name': 'GCC', 'version': '11.3.0'}
+
+sources = [{
+    'filename': 'ovni.tar.gz',
+    'git_config': {
+        'url': 'https://github.com/bsc-pm',
+        'repo_name': 'ovni',
+        'commit': 'b6903bc',
+        'clone_into': 'ovni'
+    }
+}]
+
+builddependencies = [ ('CMake', '3.24.3'), ('Ninja', '1.10.2') ]
+
+configopts = "-DUSE_MPI=0"
+

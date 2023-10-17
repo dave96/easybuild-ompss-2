@@ -1,0 +1,31 @@
+# EasyConfig for OmpSs-2/git
+easyblock = 'ConfigureMake'
+name = 'nos-v'
+version = 'git'
+
+homepage = 'https://pm.bsc.es/ompss-2'
+description = 'nOS-V system-wide tasking library'
+
+toolchain = {'name': 'GCC', 'version': '11.3.0'}
+
+sources = [{
+    'filename': 'nos-v.tar.gz',
+    'git_config': {
+        'url': 'https://github.com/bsc-pm',
+        'repo_name': 'nos-v',
+        'commit': 'd24ca3f',
+        'clone_into': 'nos-v'
+    }
+}]
+
+dependencies = [ ('ovni', 'git'), ('numactl', '2.0.14') ]
+builddependencies = [ ('libtool', '2.4.7') ]
+
+preconfigopts = "autoreconf -fiv && "
+configopts = "--with-ovni=$EBROOTOVNI"
+
+sanity_check_paths = {
+    'files': ['lib/libnosv.%s' % SHLIB_EXT],
+    'dirs': ['include', 'share']
+}
+

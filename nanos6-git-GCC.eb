@@ -1,0 +1,26 @@
+# EasyConfig for OmpSs-2/git
+easyblock = 'ConfigureMake'
+name = 'nanos6'
+version = 'git'
+
+homepage = 'https://pm.bsc.es/ompss-2'
+description = 'Nanos6 Runtime for OmpSs-2 data-flow programming model'
+
+toolchain = {'name': 'GCC', 'version': '11.3.0'}
+
+sources = [{
+    'filename': 'nanos6.tar.gz',
+    'git_config': {
+        'url': 'https://github.com/bsc-pm',
+        'repo_name': 'nanos6',
+        'commit': '07d3f68',
+        'clone_into': 'nanos6'
+    }
+}]
+
+dependencies = [ ('Boost', '1.79.0'), ('hwloc', '2.7.1') ]
+builddependencies = [ ('libtool', '2.4.7') ]
+
+preconfigopts = "./autogen.sh && "
+configopts = "--with-jemalloc=embedded --with-boost=$EBROOTBOOST --with-libnuma=$EBROOTNUMACTL --disable-stats-instrumentation --disable-verbose-instrumentation --disable-lint-instrumentation --disable-graph-instrumentation --without-papi"
+

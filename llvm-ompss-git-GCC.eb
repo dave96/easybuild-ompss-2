@@ -1,0 +1,26 @@
+# EasyConfig for OmpSs-2/git
+easyblock = 'CMakeNinja'
+
+name = 'llvm-ompss'
+version = 'git'
+
+homepage = 'https://pm.bsc.es/ompss-2'
+description = 'LLVM Compiler for OmpSs-2 data-flow programming model'
+
+toolchain = {'name': 'GCC', 'version': '11.3.0'}
+
+sources = [{
+    'filename': 'llvm.tar.gz',
+    'git_config': {
+        'url': 'https://github.com/bsc-pm',
+        'repo_name': 'llvm',
+        'commit': 'b400649',
+        'clone_into': 'llvm'
+    }
+}]
+
+builddependencies = [ ('CMake', '3.24.3'), ('Ninja', '1.10.2') ]
+dependencies = [ ('nodes', 'git'), ('nanos6', 'git'), ('ncurses', '6.3') ]
+
+configopts = '-DCMAKE_BUILD_TYPE=Release -DLLVM_PARALLEL_LINK_JOBS=1 -DCLANG_DEFAULT_NANOS6_HOME=$EBROOTNANOS6 -DCLANG_DEFAULT_NODES_HOME=$EBROOTNODES -DLLVM_ENABLE_PROJECTS=clang -DCLANG_DEFAULT_PIE_ON_LINUX=OFF -DLLVM_INSTALL_UTILS=ON -DLLVM_INCLUDE_BENCHMARKS=OFF'
+srcdir = 'llvm'
