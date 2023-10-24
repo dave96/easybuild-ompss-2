@@ -26,3 +26,4 @@ configopts = "--with-jemalloc=embedded --with-boost=$EBROOTBOOST --with-libnuma=
 
 modextravars = { 'NANOS6_HOME': '%(installdir)s' }
 
+buildopts = ''

@@ -20,3 +20,6 @@ configopts = "--with-jemalloc=embedded --with-boost=$EBROOTBOOST --with-libnuma=
 
 modextravars = { 'NANOS6_HOME': '%(installdir)s' }
 
+# Nanos6 knows how to do this by itself
+buildopts = ''
+
