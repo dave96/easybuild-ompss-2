@@ -13,5 +13,6 @@ dependencies = [
     ('nos-v', 'git'),
     ('nanos6', 'git'),
     ('nodes', 'git'),
+    ('tacuda', 'git'),
     ('ovni', 'git')
 ]
