@@ -1,0 +1,18 @@
+# EasyConfig for OmpSs-2
+easyblock = 'Bundle'
+name = 'OmpSs-2'
+version = '2023.11'
+
+homepage = 'https://pm.bsc.es/ompss-2'
+description = 'OmpSs-2 Data-flow Programming Model'
+
+toolchain = {'name': 'GCC', 'version': '11.3.0'}
+
+dependencies = [
+    ('llvm-ompss', '2023.11'),
+    ('nos-v', '2.1.1'),
+    ('nanos6', '4.0.0'),
+    ('nodes', '1.1.0'),
+    ('tacuda', '2.0.0'),
+    ('ovni', '1.4.1')
+]

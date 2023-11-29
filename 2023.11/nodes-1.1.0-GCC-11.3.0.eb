@@ -1,0 +1,33 @@
+# EasyConfig for OmpSs-2/git
+easyblock = 'ConfigureMake'
+name = 'nodes'
+version = '1.1.0'
+
+homepage = 'https://pm.bsc.es/ompss-2'
+description = 'NODES Runtime for OmpSs-2 data-flow programming model'
+
+toolchain = {'name': 'GCC', 'version': '11.3.0'}
+
+sources = [{
+    'filename': 'nodes.tar.gz',
+    'git_config': {
+        'url': 'https://github.com/bsc-pm',
+        'repo_name': 'nodes',
+        'tag': 'version-1.1',
+        'clone_into': 'nodes'
+    }
+}]
+
+dependencies = [ ('Boost', '1.79.0'), ('hwloc', '2.7.1'), ('nos-v', '2.1.1') ]
+builddependencies = [ ('libtool', '2.4.7') ]
+
+preconfigopts = "autoreconf -fiv && "
+configopts = "--with-boost=$EBROOTBOOST --with-libnuma=$EBROOTNUMACTL --with-nosv=$EBROOTNOSMINV"
+
+sanity_check_paths = {
+    'files': ['lib/libnodes.%s' % SHLIB_EXT],
+    'dirs': ['include']
+}
+
+modextravars = { 'NODES_HOME': '%(installdir)s' }
+

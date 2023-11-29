@@ -1,0 +1,32 @@
+# EasyConfig for OmpSs-2/git
+easyblock = 'ConfigureMake'
+name = 'tacuda'
+version = '2.0.0'
+
+homepage = 'https://pm.bsc.es/ompss-2'
+description = 'Task-Aware CUDA'
+
+toolchain = {'name': 'GCC', 'version': '11.3.0'}
+
+sources = [{
+    'filename': 'tacuda.tar.gz',
+    'git_config': {
+        'url': 'https://github.com/bsc-pm',
+        'repo_name': 'tacuda',
+        'tag': '2.0.0',
+        'clone_into': 'tacuda'
+    }
+}]
+
+dependencies = [ ('CUDA', '11.7.0', '', SYSTEM),  ]
+builddependencies = [ ('libtool', '2.4.7'), ('Boost', '1.79.0') ]
+
+preconfigopts = "./bootstrap && "
+configopts = "--with-cuda=$EBROOTCUDA --with-boost=$EBROOTBOOST"
+
+sanity_check_paths = {
+    'files': ['lib/libtacuda.%s' % SHLIB_EXT],
+    'dirs': ['include']
+}
+
+modextravars = { 'TACUDA_HOME': '%(installdir)s' }
