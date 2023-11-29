@@ -13,7 +13,7 @@ sources = [{
     'git_config': {
         'url': 'https://github.com/bsc-pm',
         'repo_name': 'ovni',
-        'commit': 'b6903bc',
+        'commit': '0df018c',
         'clone_into': 'ovni'
     }
 }]

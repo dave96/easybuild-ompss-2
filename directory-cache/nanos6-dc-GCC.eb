@@ -12,11 +12,11 @@ sources = [{
     'filename': 'nanos6.tar.gz'
 }]
 
-dependencies = [ ('Boost', '1.79.0'), ('hwloc', '2.7.1'), ('CUDA', '11.7.0', '', SYSTEM) ]
+dependencies = [ ('Boost', '1.79.0'), ('hwloc', '2.7.1'), ('CUDA', '11.7.0', '', SYSTEM), ('ovni', 'git') ]
 builddependencies = [ ('libtool', '2.4.7') ]
 
 preconfigopts = "./autogen.sh && "
-configopts = "--with-jemalloc=embedded --with-boost=$EBROOTBOOST --with-libnuma=$EBROOTNUMACTL --disable-stats-instrumentation --disable-verbose-instrumentation --disable-lint-instrumentation --disable-graph-instrumentation --without-papi --with-cuda=$EBROOTCUDA"
+configopts = "--with-jemalloc=embedded --with-boost=$EBROOTBOOST --with-libnuma=$EBROOTNUMACTL --disable-stats-instrumentation --disable-verbose-instrumentation --disable-lint-instrumentation --disable-graph-instrumentation --without-papi --with-cuda=$EBROOTCUDA --with-ovni=$EBROOTOVNI"
 
 modextravars = { 'NANOS6_HOME': '%(installdir)s' }
 
